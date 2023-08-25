@@ -1,0 +1,97 @@
+{
+  "name": "drupalcz/csgov-project",
+  "type": "project",
+  "description": "Project template for Drupal 9 sites built with the CS Gov distribution.",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "cweagans/composer-patches": "^1.6.5",
+    "drupal/core-composer-scaffold": "^9.1",
+    "drupalcz/csgov": "1.x"
+  },
+  "require-dev": {
+    "drush/drush": "^11.0"
+  },
+  "extra": {
+    "composer-exit-on-patch-failure": true,
+    "enable-patching": true,
+    "installer-paths": {
+      "web/core": [
+        "type:drupal-core"
+      ],
+      "web/libraries/{$name}": [
+        "type:drupal-library",
+        "type:bower-asset",
+        "type:npm-asset"
+      ],
+      "web/modules/contrib/{$name}": [
+        "type:drupal-module"
+      ],
+      "web/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "web/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ],
+      "drush/contrib/{$name}": [
+        "type:drupal-drush"
+      ]
+    },
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ],
+    "drupal-scaffold": {
+      "allowed-packages": [
+        "drupal/core"
+      ],
+      "locations": {
+        "web-root": "web/"
+      }
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    },
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "nk-o/jarallax",
+        "version": "1.10.7",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/nk-o/jarallax/archive/v1.10.7.zip"
+        },
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "type": "drupal-library"
+      }
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "post-install-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+    "post-update-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+    "quick-start": [
+      "composer install",
+      "php web/core/scripts/drupal quick-start csgov --no-interaction"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true,
+      "cweagans/composer-patches": true,
+      "drupal/core-composer-scaffold": true,
+      "drupal/core-project-message": true,
+      "oomphinc/composer-installers-extender": true,
+      "drupal/console-extend-plugin": true
+    }
+  }
+}
