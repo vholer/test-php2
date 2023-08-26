@@ -578,7 +578,7 @@ $settings['file_public_path'] = getenv('DRUPAL_FILE_PUBLIC_PATH');
  *
  * @see \Drupal\Component\FileSystem\FileSystem::getOsTemporaryDirectory()
  */
- $settings['file_temp_path'] = 'sites/default/files/tmp';
+ $settings['file_temp_path'] = getenv('DRUPAL_FILE_TEMP_PATH');
 
 /**
  * Session write interval:
