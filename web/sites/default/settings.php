@@ -264,7 +264,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = getenv('HASH_SALT');
+$settings['hash_salt'] = getenv('DRUPAL_HASH_SALT');
 
 /**
  * Deployment identifier.
@@ -507,6 +507,7 @@ $settings['update_free_access'] = FALSE;
  * the Drupal installation directory and be accessible over the web.
  */
 # $settings['file_public_path'] = 'sites/default/files';
+$settings['file_public_path'] = getenv('DRUPAL_FILE_PUBLIC_PATH');
 
 /**
  * Additional public file schemes:
@@ -837,7 +838,7 @@ $databases['default']['default'] = array (
   'username' => getenv('MYSQL_USER'),
   'password' => getenv('MYSQL_PASSWORD'),
   'prefix' => '',
-  'host' => 'localhost',
+  'host' => getenv('MYSQL_HOST'),
   'port' => '3306',
   'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
   'driver' => 'mysql',
