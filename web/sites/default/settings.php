@@ -498,6 +498,7 @@ $settings['update_free_access'] = FALSE;
  * pointing to the same server. Do not include a trailing slash.
  */
 # $settings['file_public_base_url'] = 'http://downloads.example.com/files';
+$settings['file_public_base_url'] = getenv('DRUPAL_FILE_PUBLIC_BASE_URL');
 
 /**
  * Public file path:
