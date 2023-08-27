@@ -567,6 +567,7 @@ $settings['file_public_path'] = getenv('DRUPAL_FILE_PUBLIC_PATH');
  * about securing private files.
  */
 # $settings['file_private_path'] = '';
+$settings['file_private_path'] = getenv('DRUPAL_FILE_PRIVATE_PATH');
 
 /**
  * Temporary file path:
