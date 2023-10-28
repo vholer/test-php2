@@ -847,3 +847,6 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 );
+
+# Please let's this CRAP log something
+$config['system.logging']['error_level'] = 'verbose';
