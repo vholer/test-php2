@@ -236,7 +236,6 @@ $databases = [];
  * its location.
  */
 # $settings['config_sync_directory'] = '/directory/outside/webroot';
-$settings['config_sync_directory'] = getenv('DRUPAL_CONFIG_SYNC_DIRECTORY');
 
 /**
  * Settings:
@@ -265,7 +264,7 @@ $settings['config_sync_directory'] = getenv('DRUPAL_CONFIG_SYNC_DIRECTORY');
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = getenv('DRUPAL_HASH_SALT');
+$settings['hash_salt'] = '';
 
 /**
  * Deployment identifier.
@@ -499,7 +498,6 @@ $settings['update_free_access'] = FALSE;
  * pointing to the same server. Do not include a trailing slash.
  */
 # $settings['file_public_base_url'] = 'http://downloads.example.com/files';
-#$settings['file_public_base_url'] = getenv('DRUPAL_FILE_PUBLIC_BASE_URL');
 
 /**
  * Public file path:
@@ -509,7 +507,6 @@ $settings['update_free_access'] = FALSE;
  * the Drupal installation directory and be accessible over the web.
  */
 # $settings['file_public_path'] = 'sites/default/files';
-#$settings['file_public_path'] = getenv('DRUPAL_FILE_PUBLIC_PATH');
 
 /**
  * Additional public file schemes:
@@ -567,7 +564,6 @@ $settings['update_free_access'] = FALSE;
  * about securing private files.
  */
 # $settings['file_private_path'] = '';
-$settings['file_private_path'] = getenv('DRUPAL_FILE_PRIVATE_PATH');
 
 /**
  * Temporary file path:
@@ -580,7 +576,7 @@ $settings['file_private_path'] = getenv('DRUPAL_FILE_PRIVATE_PATH');
  *
  * @see \Drupal\Component\FileSystem\FileSystem::getOsTemporaryDirectory()
  */
- $settings['file_temp_path'] = getenv('DRUPAL_FILE_TEMP_PATH');
+# $settings['file_temp_path'] = '/tmp';
 
 /**
  * Session write interval:
@@ -832,18 +828,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
  *
  * Keep this code block at the end of this file to take full effect.
  */
-#
-# if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-#   include $app_root . '/' . $site_path . '/settings.local.php';
-# }
-$databases['default']['default'] = array (
-  'database' => getenv('MYSQL_DATABASE'),
-  'username' => getenv('MYSQL_USER'),
-  'password' => getenv('MYSQL_PASSWORD'),
-  'prefix' => '',
-  'host' => getenv('MYSQL_HOST'),
-  'port' => '3306',
-  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
-  'driver' => 'mysql',
-  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
-);
+
+if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+  include $app_root . '/' . $site_path . '/settings.local.php';
+}
