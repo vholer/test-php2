@@ -829,6 +829,40 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
  * Keep this code block at the end of this file to take full effect.
  */
 
+### Custom >>>>>
+
+/**
+ * Load services definition file.
+ */
+$settings['container_yamls'][] = __DIR__ . '/services.yml';
+
+// // PROD environment.
+// if (DRUPAL_ROOT === '/home/csgov_demo/www/web') {
+//   $path = '/var/www/csgov_demo/conf/settings.prod.php';
+// }
+// // DEV environment.
+// elseif (strpos(DRUPAL_ROOT, '/dev.csgov.cz/') !== FALSE) {
+//   $path = '/var/www/csgov_demo/conf/settings.dev.php';
+// }
+//
+$path = $app_root . '/' . $site_path . '/settings/settings.prod.php';
+
+// Load settings.
+if (!empty($path) && file_exists($path)) {
+  require($path);
+}
+
+/**
+ * Allows to remove orphaned files. ??
+ */
+$config['file.settings']['make_unused_managed_files_temporary'] = TRUE;
+
+if (file_exists($app_root . '/' . $site_path . '/settings/settings.local.php')) {
+  include $app_root . '/' . $site_path . '/settings/settings.local.php';
+}
+
+### Custom <<<<<
+
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
